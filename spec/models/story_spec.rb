@@ -15,7 +15,8 @@ describe Story do
   describe :text do
     it "should be exactly 126 characters" do
       s = Story.new
-      ['', 
+      [ '',
+        "\n"*126,
         'x', 
         'x'*125,
         (' ' + 'x'*125),
