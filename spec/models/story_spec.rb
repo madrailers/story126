@@ -13,7 +13,22 @@ describe Story do
   end
   
   describe :text do
-    it "should be no less than 126 characters"
-    it "should be no more than 126 characters"
+    it "should be exactly 126 characters" do
+      s = Story.new
+      ['', 
+        'x', 
+        'x'*125,
+        (' ' + 'x'*125),
+        ("\n" + 'x'*125),
+        ('x'*125 + ' '),
+        ('x'*125 + "\n"), 
+        'x'*127].each do |t|
+        s.text = t
+        s.should have_invalid_attribute(:text, 
+          'must be exactly 126 characters without whitespace padding')
+      end
+      s.text = 'x'*126
+      s.should have_valid_attribute(:text)
+    end
   end
 end
