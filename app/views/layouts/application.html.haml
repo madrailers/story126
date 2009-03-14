@@ -1,0 +1,13 @@
+!!!
+%html
+  %head
+    %title story126
+  %body
+    %h1 Story 126
+    %h2 You have a story to tell. We have 126 characters to give you.
+    -if flash[:notice]
+      #notice= flash[:notice]
+    #content= yield
+    #footer
+      This is a Project608 joint. &copy;2009 Bradley Grzesiak. Props to
+      %a{:href => 'http://web608.org'} Web608

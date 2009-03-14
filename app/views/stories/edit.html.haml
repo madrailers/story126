@@ -1,0 +1,17 @@
+%h1 Editing story
+- form_for(@story) do |f|
+  = f.error_messages
+  %p
+    = f.label :text
+    %br
+    = f.text_field :text
+  %p
+    = f.label :user_id
+    %br
+    = f.text_field :user_id
+  %p
+    = f.submit "Update"
+
+= link_to 'Show', @story
+|
+= link_to 'Back', stories_path

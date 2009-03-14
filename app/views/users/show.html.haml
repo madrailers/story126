@@ -1,0 +1,9 @@
+%p
+  %b Login:
+  =h @user.login
+%p
+  %b Login count:
+  =h @user.login_count
+= link_to 'Edit', edit_user_path(@user)
+|
+= link_to 'Back', users_path

@@ -31,5 +31,14 @@ describe Story do
       s.text = 'x'*126
       s.should have_valid_attribute(:text)
     end
+    
+    it "should be unique" do
+      s = Story.new
+      s.text = 'x'*126
+      s.save
+      t = Story.new
+      t.text = 'x'*126
+      t.should have_invalid_attribute(:text, 'must be unique')
+    end
   end
 end

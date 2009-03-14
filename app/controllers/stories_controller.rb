@@ -44,11 +44,13 @@ class StoriesController < ApplicationController
 
     respond_to do |format|
       if @story.save
-        flash[:notice] = 'Story was successfully created.'
-        format.html { redirect_to(@story) }
-        format.xml  { render :xml => @story, :status => :created, :location => @story }
+        flash[:notice] = 'Hey! Thanks for that wonderful story!'
+        format.html { redirect_to('/') }
+        format.xml  { head :ok }
       else
-        format.html { render :action => "new" }
+        flash[:notice] = 'Um, something went wrong.'
+        # format.html { render :action => "new" }
+        format.html { redirect_to '/'}
         format.xml  { render :xml => @story.errors, :status => :unprocessable_entity }
       end
     end
@@ -81,5 +83,39 @@ class StoriesController < ApplicationController
       format.html { redirect_to(stories_url) }
       format.xml  { head :ok }
     end
+  end
+  
+  # GET /stories/pending
+  def pending
+    @stories = Story.pending
+
+    respond_to do |format|
+      format.html # index.html.erb
+    end
+  end
+  
+  # PUT /stories/1/approve
+  def approve
+    @story = Story.find(params[:id])
+    @story.state = :approved
+    respond_to do |format|
+      format.html { redirect_to(pending_stories_url) }
+    end
+  end
+  
+  # PUT /stories/1/reject
+  def reject
+  end
+  
+  # PUT /stories/1/mark_as_spam
+  def mark_as_spam
+  end
+  
+  # PUT /stories/1/mark_as_pending
+  def mark_as_pending
+  end
+  
+  # PUT /stories/1/publish
+  def publish
   end
 end

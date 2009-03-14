@@ -1,5 +1,15 @@
 ActionController::Routing::Routes.draw do |map|
-  map.resources :stories
+  map.resources :users
+
+  # map.connect 'stories/pending', :controller => 'stories', :action => 'pending'
+  map.connect 'stories/new', :controller => 'stories', :action => 'new'
+  map.resources :stories,
+    :collection => { :pending => :get },
+    :member => {:approve => :put,
+                :publish => :put,
+                :reject => :put,
+                :mark_as_spam => :put,
+                :mark_as_pending => :put}
 
   # The priority is based upon order of creation: first created -> highest priority.
 
@@ -34,6 +44,7 @@ ActionController::Routing::Routes.draw do |map|
 
   # You can have the root of your site routed with map.root -- just remember to delete public/index.html.
   # map.root :controller => "welcome"
+  map.root :controller => 'stories', :action => 'new'
 
   # See how all your routes lay out with "rake routes"
 
