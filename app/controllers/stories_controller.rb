@@ -41,17 +41,19 @@ class StoriesController < ApplicationController
   # POST /stories.xml
   def create
     @story = Story.new(params[:story])
-
+    # print @story.text
+    
     respond_to do |format|
       if @story.save
         flash[:notice] = 'Hey! Thanks for that wonderful story!'
         format.html { redirect_to('/') }
         format.xml  { head :ok }
       else
-        flash[:notice] = 'Um, something went wrong.'
+        flash[:notice] = "Um, something went wrong: story #{@story.errors.on(:text)}"
+        flash[:text] = @story.text
+        format.xml  { render :xml => @story.errors, :status => :unprocessable_entity }
         # format.html { render :action => "new" }
         format.html { redirect_to '/'}
-        format.xml  { render :xml => @story.errors, :status => :unprocessable_entity }
       end
     end
   end

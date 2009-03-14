@@ -2,7 +2,8 @@ ActionController::Routing::Routes.draw do |map|
   map.resources :users
 
   # map.connect 'stories/pending', :controller => 'stories', :action => 'pending'
-  map.connect 'stories/new', :controller => 'stories', :action => 'new'
+  # map.connect 'stories/new', :controller => 'stories', :action => 'new'
+  # map.root :controller => 'stories', :action => 'new'
   map.resources :stories,
     :collection => { :pending => :get },
     :member => {:approve => :put,

@@ -3,7 +3,10 @@
   %p
     = f.label :text
     %br
-    = f.text_area :text, {:rows => 2, :cols => 70}
+    - if flash[:text]
+      = text_area_tag "story[text]", flash[:text], {:rows => 2, :cols => 70, :id => 'story_text'}
+    - else
+      = f.text_area :text, {:rows => 2, :cols => 70}
   %p
     = f.submit "Create"
 
