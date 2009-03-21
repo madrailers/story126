@@ -6,6 +6,14 @@ describe StoriesController do
     @mock_story ||= mock_model(Story, stubs)
   end
   
+  def mock_errors(stubs={})
+    unless @mock_errors
+      @mock_errors = mock(:errors, stubs)
+      @mock_errors.should_receive(:on).with(:text).and_return("error on :text")
+    end
+    @mock_errors
+  end
+  
   describe "GET index" do
 
     it "exposes all stories as @stories" do
@@ -81,23 +89,47 @@ describe StoriesController do
       it "redirects to the created story" do
         Story.stub!(:new).and_return(mock_story(:save => true))
         post :create, :story => {}
-        response.should redirect_to(story_url(mock_story))
+        response.should redirect_to(root_url)
       end
       
     end
     
     describe "with invalid params" do
+      
+      #this is all useless because of the different way i want the site to work!
+      #
+      # it "exposes a newly created but unsaved story as @story" do
+      # 
+      #   story_mock = mock_story(:save => false)
+      #   story_mock.should_receive(:errors).and_return(mock_errors)
+      #   story_mock.stub!(:text).and_return("this is the text")
+      # 
+      #   Story.stub!(:new).with({'these' => 'params'}).and_return(story_mock)
+      #   post :create, :story => {:these => 'params'}
+      #   assigns(:story).should equal(mock_story)
+      # end
 
-      it "exposes a newly created but unsaved story as @story" do
-        Story.stub!(:new).with({'these' => 'params'}).and_return(mock_story(:save => false))
-        post :create, :story => {:these => 'params'}
-        assigns(:story).should equal(mock_story)
-      end
-
-      it "re-renders the 'new' template" do
-        Story.stub!(:new).and_return(mock_story(:save => false))
-        post :create, :story => {}
-        response.should render_template('new')
+      # it "re-renders the 'new' template" do
+      #   
+      #   story_mock = mock_story(:save => false)
+      #   story_mock.should_receive(:errors).and_return(mock_errors)
+      #   story_mock.stub!(:text).and_return("this is the text")
+      #   
+      #   Story.stub!(:new).and_return(story_mock)
+      #   post :create, :story => {}
+      #   # response.should render_template('new')
+      #   response.should redirect_to('/')
+      # end
+      
+      it "it redirects to '/' with the invalid story stored in flash[:text]" do
+        story_mock = mock_story(:save => false)
+        story_mock.should_receive(:errors).and_return(mock_errors)
+        story_mock.stub!(:text).and_return("this is the text")
+        
+        Story.stub!(:new).and_return(story_mock)
+        post :create, :story => story_mock
+        flash.should have_key(:text)
+        flash[:text].should == "this is the text"
       end
       
     end

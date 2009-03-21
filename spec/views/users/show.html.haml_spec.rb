@@ -12,13 +12,17 @@ describe "/users/show.html.haml" do
     #   :perishable_token => "value for perishable_token",
     #   :login_count => 1
     # )
-    assigns[:user] = @user = current_user
+    login
+    @user = current_user
+    @user.should_receive(:login).and_return('the username')
+    @user.should_receive(:login_count).and_return(42)
+    assigns[:user] = @user
   end
 
   it "renders attributes in <p>" do
     render
-    response.should have_text(/value\ for\ login/)
-    response.should have_text(/1/)
+    response.should have_text(/the\ username/)
+    response.should have_text(/42/)
   end
 end
 

@@ -2,13 +2,21 @@
 - form_for(@user) do |f|
   = f.error_messages
   %p
-    = f.label :login
+    = f.label :login, "Username:"
     %br
     = f.text_field :login
   %p
-    = f.label :login_count
+    = f.label :email, "Email:"
     %br
-    = f.text_field :login_count
+    = f.text_field :email
+    %p
+      = f.label :password, "Password:"
+      %br
+      = f.password_field :password, :value => ''
+    %p
+      = f.label :password_confirmation, "Confirm:"
+      %br
+      = f.password_field :password_confirmation, :value => ''
   %p
     = f.submit "Update"
 
