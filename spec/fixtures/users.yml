@@ -1,19 +1,19 @@
 # Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
 
 one:
-  login: MyString
+  login: firstUser
   crypted_password: MyString
   password_salt: MyString
   persistence_token: MyString
   single_access_token: MyString
   perishable_token: MyString
-  login_count: 1
+  login_count: 42
 
 two:
-  login: MyString
+  login: secondUser
   crypted_password: MyString
   password_salt: MyString
   persistence_token: MyString
   single_access_token: MyString
   perishable_token: MyString
-  login_count: 1
+  login_count: 4

@@ -1,20 +1,22 @@
 class UsersController < ApplicationController
   # GET /users
   # GET /users.xml
-  # def index
-  #   @users = User.find(:all)
-  # 
-  #   respond_to do |format|
-  #     format.html # index.html.erb
-  #     format.xml  { render :xml => @users }
-  #   end
-  # end
+  def index
+    
+    # enforce only admins?
+    
+    @users = User.find(:all)
+  
+    respond_to do |format|
+      format.html # index.html.erb
+      format.xml  { render :xml => @users }
+    end
+  end
 
   # GET /users/1
   # GET /users/1.xml
   def show
-    # @user = User.find(params[:id])
-    @user = @current_user
+    @user = User.find(params[:id])
 
     respond_to do |format|
       format.html # show.html.erb
@@ -35,8 +37,10 @@ class UsersController < ApplicationController
 
   # GET /users/1/edit
   def edit
-    # @user = User.find(params[:id])
-    @user = @current_user
+    @user = User.find(params[:id])
+    
+    # do it this way to prevent one user from editing other user's stuff
+    # @user = @current_user
   end
 
   # POST /users
@@ -59,8 +63,10 @@ class UsersController < ApplicationController
   # PUT /users/1
   # PUT /users/1.xml
   def update
-    # @user = User.find(params[:id])
-    @user = @current_user
+    @user = User.find(params[:id])
+    
+    #limit ability of one user to change other user's stuff!
+    # @user = @current_user
 
     respond_to do |format|
       if @user.update_attributes(params[:user])
@@ -76,13 +82,16 @@ class UsersController < ApplicationController
 
   # DELETE /users/1
   # DELETE /users/1.xml
-  # def destroy
-  #   @user = User.find(params[:id])
-  #   @user.destroy
-  # 
-  #   respond_to do |format|
-  #     format.html { redirect_to(users_url) }
-  #     format.xml  { head :ok }
-  #   end
-  # end
+  def destroy
+    
+    # require admin access?
+    
+    @user = User.find(params[:id])
+    @user.destroy
+  
+    respond_to do |format|
+      format.html { redirect_to(users_url) }
+      format.xml  { head :ok }
+    end
+  end
 end
