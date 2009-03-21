@@ -19,7 +19,7 @@ task :test do
 
   abort "Errors running #{errors.to_sentence}!" if errors.any?
 
-	if(out = ENV['CC_BUILD_ARTIFACTS'])
-	  mv('doc/models.png', out)
-  end
+	# if(out = ENV['CC_BUILD_ARTIFACTS'])
+	  # mv('doc/models.png', out)
+  # end
 end
