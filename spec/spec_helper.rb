@@ -4,12 +4,8 @@ ENV["RAILS_ENV"] = "test"
 require File.expand_path(File.dirname(__FILE__) + "/../config/environment")
 require 'spec/autorun'
 require 'spec/rails'
-require File.expand_path(File.dirname(__FILE__) + '/matchers/model_matchers')
-require File.expand_path(File.dirname(__FILE__) + '/helpers/authlogic_helper')
 
 Spec::Runner.configure do |config|
-  config.include ModelMatchers
-  
   # If you're not using ActiveRecord you should remove these
   # lines, delete config/database.yml and disable :active_record
   # in your config/boot.rb
