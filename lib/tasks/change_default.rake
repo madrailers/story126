@@ -3,8 +3,8 @@ task :default => :test
 desc 'Run all tests on this project (unit, functional, spec, integration)'
 task :test do
   # errors = %w(verify_rcov features doc:diagram:models).collect do |task|
-  # errors = %w(verify_rcov features).collect do |task|
-  errors = %w(spec features).collect do |task|
+  # errors = %w(spec features).collect do |task|
+  errors = %w(verify_rcov features).collect do |task|
     begin
       Rake::Task[task].invoke
       nil
