@@ -20,11 +20,11 @@ h2. Check me out
 
 h2. Install
 
-* @cp config/database.yml.template config/database.yml@
-* edit config/database.yml for your local database settings.
-* @cp spec/spec.opts.template spec/spec.opts@
-* alter spec/spec.opts to your preferences
-* @rake db:create@
-* @RAILS_ENV=test rake db:create@
-* @rake db:migrate@
-* run rake with no args to see the tests pass.
+# @cp config/database.yml.template config/database.yml@
+# edit config/database.yml for your local database settings.
+# @cp spec/spec.opts.template spec/spec.opts@
+# alter spec/spec.opts to your preferences
+# @rake db:create@
+# @RAILS_ENV=test rake db:create@
+# @rake db:migrate@
+# run rake with no args to see the tests pass.
