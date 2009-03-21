@@ -1,5 +1,7 @@
 ActionController::Routing::Routes.draw do |map|
   map.resources :users
+  map.resource :user_session
+  map.resource :account, :controller => "users"
 
   # map.connect 'stories/pending', :controller => 'stories', :action => 'pending'
   # map.connect 'stories/new', :controller => 'stories', :action => 'new'

@@ -1,7 +1,7 @@
 class CreateUserSessions < ActiveRecord::Migration
   def self.up
     create_table :user_sessions do |t|
-
+      
       t.timestamps
     end
   end

@@ -1,12 +1,13 @@
 - form_for(@story) do |f|
   /= f.error_messages
   %p
-    = f.label :text
+    = f.label :text, "Start your story here:"
     %br
+    - text_area_opts = {:rows => 4, :cols => 70, :tabIndex => 0}
     - if flash[:text]
-      = text_area_tag "story[text]", flash[:text], {:rows => 2, :cols => 70, :id => 'story_text'}
+      = text_area_tag "story[text]", flash[:text], text_area_opts.merge(:id => 'story_text')
     - else
-      = f.text_area :text, {:rows => 2, :cols => 70}
+      = f.text_area :text, text_area_opts
   %p
     = f.submit "Create"
 
