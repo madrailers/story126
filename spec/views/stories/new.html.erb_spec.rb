@@ -15,8 +15,8 @@ describe "/stories/new.html.erb" do
     render
     
     response.should have_tag("form[action=?][method=post]", stories_path) do
-      with_tag("input#story_text[name=?]", "story[text]")
-      with_tag("input#story_user_id[name=?]", "story[user_id]")
+      with_tag("textarea#story_text[name=?]", "story[text]")
+      # with_tag("input#story_user_id[name=?]", "story[user_id]")
     end
   end
 end
