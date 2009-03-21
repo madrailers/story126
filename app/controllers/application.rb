@@ -23,4 +23,12 @@ private
     return @current_user if defined?(@current_user)
     @current_user = current_user_session && current_user_session.user
   end
+  
+  def redirect_back_or(path)
+    begin
+      redirect_to :back
+    rescue ActionController::RedirectBackError
+      redirect_to path
+    end
+  end
 end
