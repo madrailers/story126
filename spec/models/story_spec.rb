@@ -11,7 +11,7 @@ describe Story do
   it "should create a new instance given valid attributes" do
     Story.create!(@valid_attributes)
   end
-  
+
   describe :text do
     it "should be exactly 126 characters" do
       s = Story.new
@@ -25,13 +25,13 @@ describe Story do
         ('x'*125 + "\n"), 
         'x'*127].each do |t|
         s.text = t
-        s.should have_invalid_attribute(:text, 
+        s.should have_invalid_attribute(:text,
           'must be exactly 126 characters without whitespace padding')
       end
       s.text = 'x'*126
       s.should have_valid_attribute(:text)
     end
-    
+
     it "should be unique" do
       s = Story.new
       s.text = 'x'*126
