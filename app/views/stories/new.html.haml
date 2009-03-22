@@ -4,10 +4,7 @@
     = f.label :text, "Start your story here:"
     %br
     - text_area_opts = {:rows => 4, :cols => 70, :tabIndex => 0}
-    - if flash[:text]
-      = text_area_tag "story[text]", flash[:text], text_area_opts.merge(:id => 'story_text')
-    - else
-      = f.text_area :text, text_area_opts
+    = f.text_area :text, text_area_opts
   %p
     = f.submit "Create"
 
