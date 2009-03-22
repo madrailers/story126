@@ -40,18 +40,18 @@ class StoriesController < ApplicationController
   # POST /stories
   # POST /stories.xml
   def create
-    @story = Story.new(params[:story])
+    story = Story.new(params[:story])
     # print @story.text
-    
+
     respond_to do |format|
-      if @story.save
+      if story.save
         flash[:notice] = 'Hey! Thanks for that wonderful story!'
         format.html { redirect_to('/') }
         format.xml  { head :ok }
       else
-        flash[:notice] = "Um, something went wrong: story #{@story.errors.on(:text)}"
-        flash[:text] = @story.text
-        format.xml  { render :xml => @story.errors, :status => :unprocessable_entity }
+        flash[:notice] = "Um, something went wrong: story #{story.errors.on(:text)}"
+        flash[:text] = story.text
+        format.xml  { render :xml => story.errors, :status => :unprocessable_entity }
         # format.html { render :action => "new" }
         format.html { redirect_to '/'}
       end
@@ -95,7 +95,7 @@ class StoriesController < ApplicationController
       format.html # index.html.erb
     end
   end
-  
+
   # PUT /stories/1/approve
   def approve
     @story = Story.find(params[:id])
@@ -104,19 +104,19 @@ class StoriesController < ApplicationController
       format.html { redirect_to(pending_stories_url) }
     end
   end
-  
+
   # PUT /stories/1/reject
   def reject
   end
-  
+
   # PUT /stories/1/mark_as_spam
   def mark_as_spam
   end
-  
+
   # PUT /stories/1/mark_as_pending
   def mark_as_pending
   end
-  
+
   # PUT /stories/1/publish
   def publish
   end

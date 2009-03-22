@@ -4,7 +4,7 @@ ENV["RAILS_ENV"] = "test"
 require File.expand_path(File.dirname(__FILE__) + "/../config/environment")
 require 'spec/autorun'
 require 'spec/rails'
-require 'spec/helpers/authlogic_helper'
+require File.expand_path(File.dirname(__FILE__) + '/helpers/authlogic_helper')
 require File.expand_path(File.dirname(__FILE__) + '/matchers/model_matchers')
 
 Spec::Runner.configure do |config|

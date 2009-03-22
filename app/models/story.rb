@@ -17,31 +17,31 @@ class Story < ActiveRecord::Base
   aasm_state :published
   aasm_state :rejected
   aasm_state :spam
-  
+
   aasm_event :approve do
     transitions :to => :approved, :from => [:pending, :rejected, :spam]
   end
-  
+
   aasm_event :reject do
     transitions :to => :rejected, :from => [:pending, :approved, :spam]
   end
-  
+
   aasm_event :flag_as_spam do
     transitions :to => :spam, :from =>
       [:pending, :approved, :published, :rejected]
   end
-  
+
   aasm_event :publish do
     # tweet!
     # store link to tweet!
     transitions :to => :published, :from => [:approved]
   end
-  
+
   aasm_event :reset do
     transitions :to => :pending, :from =>
       [:approved, :published, :rejected, :spam]
   end
-  
+
 protected
   # a special validation is required since we need to apply "strip"
   def text_must_be_exactly_126_characters
