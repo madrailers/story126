@@ -10,6 +10,10 @@ def al_login(session_stubs = {}, user_stubs = {})
   UserSession.stub!(:find).and_return(user_session(session_stubs, user_stubs))
 end
 
+def al_admin(session_stubs = {}, user_stubs = {})
+  UserSession.stub!(:find).and_return(user_session(session_stubs, user_stubs.merge(:login => "admin")))
+end
+
 def logout
   @user_session = nil
 end

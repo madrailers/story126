@@ -155,4 +155,51 @@ describe StoriesController do
       response.should redirect_to(stories_url)
     end
   end
+
+  describe "GET pending" do
+    
+    it "exposes all pending stories as @stories" do
+      Story.should_receive(:pending).and_return([mock_story])
+      al_admin
+      get :pending
+      assigns[:stories].should == [mock_story]
+    end
+    
+  end
+  
+  describe "GET accepted" do
+    it "exposes all accepted stories as @stories" do
+      Story.should_receive(:accepted).and_return([mock_story])
+      al_admin
+      get :accepted
+      assigns[:stories].should == [mock_story]
+    end
+  end
+  
+  describe "GET rejected" do
+    it "exposes all rejected stories as @stories" do
+      Story.should_receive(:rejected).and_return([mock_story])
+      al_admin
+      get :rejected
+      assigns[:stories].should == [mock_story]
+    end
+  end
+
+  describe "GET spam" do
+    it "exposes all spam stories as @stories" do
+      Story.should_receive(:spam).and_return([mock_story])
+      al_admin
+      get :spam
+      assigns[:stories].should == [mock_story]
+    end
+  end
+
+  describe "GET published" do
+    it "exposes all published stories as @stories" do
+      Story.should_receive(:published).and_return([mock_story])
+      al_admin
+      get :published
+      assigns[:stories].should == [mock_story]
+    end
+  end
 end
