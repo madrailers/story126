@@ -25,7 +25,7 @@ class StoriesController < ApplicationController
   # GET /stories/new.xml
   def new
     @story = Story.new
-
+    @story.text = flash[:text]
     respond_to do |format|
       format.html # new.html.erb
       format.xml  { render :xml => @story }

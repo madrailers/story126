@@ -12,7 +12,7 @@ describe "/users/show.html.haml" do
     #   :perishable_token => "value for perishable_token",
     #   :login_count => 1
     # )
-    login
+    al_login
     @user = current_user
     @user.should_receive(:login).and_return('the username')
     @user.should_receive(:login_count).and_return(42)
