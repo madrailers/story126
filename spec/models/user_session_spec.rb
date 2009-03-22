@@ -6,7 +6,7 @@ describe UserSession do
       :login => 'username',
       :password => 'somePassword'
     }
-    login
+    al_login
   end
 
   it "should create a new instance given valid attributes" do
