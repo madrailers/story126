@@ -50,3 +50,16 @@ protected
     end
   end
 end
+
+
+# == Schema Info
+# Schema version: 20090321191310
+#
+# Table name: stories
+#
+#  id         :integer(4)      not null, primary key
+#  user_id    :integer(4)
+#  state      :string(255)
+#  text       :string(255)
+#  created_at :datetime
+#  updated_at :datetime
