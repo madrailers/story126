@@ -6,6 +6,17 @@ module NavigationHelpers
       root_path
     
     # Add more page name => path mappings here
+    when /the pending stories page/i
+      pending_stories_path
+    
+    when /the spam stories page/i
+      spam_stories_path
+    
+    when /the rejected stories page/i
+      rejected_stories_path
+    
+    when /the accepted stories page/i
+      accepted_stories_path
     
     else
       raise "Can't find mapping from \"#{page_name}\" to a path."

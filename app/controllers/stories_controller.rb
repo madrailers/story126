@@ -89,11 +89,68 @@ class StoriesController < ApplicationController
   
   # GET /stories/pending
   def pending
-    @stories = Story.pending
+    if current_user && current_user.login == 'admin'
+      @stories = Story.pending
 
-    respond_to do |format|
-      format.html # index.html.erb
+      respond_to do |format|
+        format.html # index.html.erb
+      end
+    else
+      redirect_to '/'
     end
+  end
+  
+  # GET /stories/accepted
+  def accepted
+    if current_user && current_user.login == 'admin'
+      @stories = Story.accepted
+
+      respond_to do |format|
+        format.html # index.html.erb
+      end
+    else
+      redirect_to '/'
+    end
+  end
+
+  # GET /stories/rejected
+  def rejected
+    if current_user && current_user.login == 'admin'
+      @stories = Story.rejected
+
+      respond_to do |format|
+        format.html # index.html.erb
+      end
+    else
+      redirect_to '/'
+    end
+  end
+
+  # GET /stories/spam
+  def spam
+    if current_user && current_user.login == 'admin'
+      @stories = Story.spam
+
+      respond_to do |format|
+        format.html # index.html.erb
+      end
+    else
+      redirect_to '/'
+    end
+  end
+
+  # GET /stories/published
+  def published
+    if current_user && current_user.login == 'admin'
+      @stories = Story.published
+
+      respond_to do |format|
+        format.html # index.html.erb
+      end
+    else
+      redirect_to '/'
+    end
+
   end
 
   # PUT /stories/1/approve

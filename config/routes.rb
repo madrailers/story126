@@ -7,7 +7,11 @@ ActionController::Routing::Routes.draw do |map|
   # map.connect 'stories/new', :controller => 'stories', :action => 'new'
   # map.root :controller => 'stories', :action => 'new'
   map.resources :stories,
-    :collection => { :pending => :get },
+    :collection => { :pending => :get,
+                     :rejected => :get,
+                     :spam => :get,
+                     :accepted => :get,
+                     :published => :get},
     :member => {:approve => :put,
                 :publish => :put,
                 :reject => :put,
