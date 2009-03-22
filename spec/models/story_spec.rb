@@ -13,23 +13,38 @@ describe Story do
   end
 
   describe :text do
-    it "should be exactly 126 characters" do
-      s = Story.new
-      [ '',
-        "\n"*126,
-        'x', 
-        'x'*125,
-        (' ' + 'x'*125),
-        ("\n" + 'x'*125),
-        ('x'*125 + ' '),
-        ('x'*125 + "\n"), 
-        'x'*127].each do |t|
-        s.text = t
-        s.should have_invalid_attribute(:text,
-          'must be exactly 126 characters without whitespace padding')
+    describe 'passed 126 character message' do
+      it 'should be valid' do
+        s = Story.new(:text => 'x'*126)
+        s.should have_valid_attribute(:text)
       end
-      s.text = 'x'*126
-      s.should have_valid_attribute(:text)
+    end
+
+    describe 'passed too short a message' do
+      it "should show a too short message" do
+        s = Story.new
+        [ '',
+          "\n"*126,
+          'x', 
+          'x'*125,
+          (' ' + 'x'*125),
+          ("\n" + 'x'*125),
+          ('x'*125 + ' '),
+          ('x'*125 + "\n")].each do |t|
+          s.text = t
+          s.should have_invalid_attribute(:text, 'too short. Must be exactly 126 characters without whitespace padding')
+        end
+      end
+    end
+
+    describe 'passed too long a message' do
+      it "should show a too long message" do
+        s = Story.new
+        ['x'*127].each do |t|
+          s.text = t
+          s.should have_invalid_attribute(:text, 'too long. Must be exactly 126 characters without whitespace padding')
+        end
+      end
     end
 
     it "should be unique" do

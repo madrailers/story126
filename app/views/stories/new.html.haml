@@ -1,10 +1,9 @@
 - form_for(@story) do |f|
   /= f.error_messages
   %p
-    = f.label :text, "Start your story here:"
+    = f.label :text, "Start your story here"
     %br
-    - text_area_opts = {:rows => 4, :cols => 70, :tabIndex => 0}
-    = f.text_area :text, text_area_opts
+    = f.text_area :text, {:rows => 4, :cols => 70, :tabIndex => 0}
   %p
     = f.submit "Create"
 
