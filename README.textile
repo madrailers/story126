@@ -24,6 +24,8 @@ h2. Install
 # edit config/database.yml for your local database settings.
 # @cp spec/spec.opts.template spec/spec.opts@
 # alter spec/spec.opts to your preferences
+# @git submodule init@
+# @git submodule update@
 # @rake db:create@
 # @RAILS_ENV=test rake db:create@
 # @rake db:migrate@
