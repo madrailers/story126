@@ -10,4 +10,5 @@ log/*.log
 spec/spec.opts
 storage
 tmp/**/*
+tmp/webrat*.html
 **/~*
