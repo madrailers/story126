@@ -31,6 +31,10 @@ Then /^I should see all (.*) stories or "(.*)"$/i do |story_state, else_text|
   response.should (have_tag("table") || have_text(/#{else_text}/i))
 end
 
+Given /^there are no stories$/ do
+  Story.delete_all
+end
+
 Given /^a story with id "(.*)" has state "(.*)"$/ do |story_id, story_state|
   Story.create!(:text => random_string, :id => story_id, :state => story_state)
 end

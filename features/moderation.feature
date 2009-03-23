@@ -24,6 +24,7 @@ Feature: Story Moderation
   Scenario: Administrator can mark a story as accepted
     Given "administrator" user exists
     And I am logged in as "administrator"
+    And there are no stories
     And a story with id "1" has state "pending"
     When I am on the pending stories page
     And I approve the story with id "1"
@@ -33,6 +34,7 @@ Feature: Story Moderation
   Scenario: Administrator can mark a story as rejected
     Given "administrator" user exists
     And I am logged in as "administrator"
+    And there are no stories
     And a story with id "2" has state "pending"
     When I am on the pending stories page
     And I reject the story with id "2"
@@ -42,6 +44,7 @@ Feature: Story Moderation
   Scenario: Administrator can mark a story as spam
     Given "administrator" user exists
     And I am logged in as "administrator"
+    And there are no stories
     And a story with id "3" has state "pending"
     When I am on the pending stories page
     And I mark as spam the story with id "3"
@@ -51,6 +54,7 @@ Feature: Story Moderation
   Scenario: Administrator can publish a story
     Given "administrator" user exists
     And I am logged in as "administrator"
+    And there are no stories
     And a story with id "4" has state "approved"
     When I am on the approved stories page
     And I publish the story with id "4"
