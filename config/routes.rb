@@ -7,12 +7,17 @@ ActionController::Routing::Routes.draw do |map|
   # map.connect 'stories/new', :controller => 'stories', :action => 'new'
   # map.root :controller => 'stories', :action => 'new'
   map.resources :stories,
-    :collection => { :pending => :get },
+    :collection => { :pending => :get,
+                     :rejected => :get,
+                     :spam => :get,
+                     :approved => :get,
+                     :published => :get},
     :member => {:approve => :put,
                 :publish => :put,
                 :reject => :put,
                 :mark_as_spam => :put,
                 :mark_as_pending => :put}
+    
 
   # The priority is based upon order of creation: first created -> highest priority.
 

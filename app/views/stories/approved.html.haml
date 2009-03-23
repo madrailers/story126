@@ -1,4 +1,4 @@
-%h1 Pending stories
+%h1 Approved stories
 %table
   %tr
     %th
@@ -12,7 +12,7 @@
       %td
         =h story.user_id
       %td
-        = link_to 'Approve', approve_story_path(story), :method => :put
+        = link_to 'Publish', publish_story_path(story), :method => :put
       %td
         = link_to 'Reject', reject_story_path(story), :method => :put
       %td

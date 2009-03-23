@@ -155,4 +155,101 @@ describe StoriesController do
       response.should redirect_to(stories_url)
     end
   end
+
+  describe "GET pending" do
+    
+    it "exposes all pending stories as @stories" do
+      Story.should_receive(:pending).and_return([mock_story])
+      al_admin
+      get :pending
+      assigns[:stories].should == [mock_story]
+    end
+    
+  end
+  
+  describe "GET approved" do
+    it "exposes all approved stories as @stories" do
+      Story.should_receive(:approved).and_return([mock_story])
+      al_admin
+      get :approved
+      assigns[:stories].should == [mock_story]
+    end
+  end
+  
+  describe "GET rejected" do
+    it "exposes all rejected stories as @stories" do
+      Story.should_receive(:rejected).and_return([mock_story])
+      al_admin
+      get :rejected
+      assigns[:stories].should == [mock_story]
+    end
+  end
+
+  describe "GET spam" do
+    it "exposes all spam stories as @stories" do
+      Story.should_receive(:spam).and_return([mock_story])
+      al_admin
+      get :spam
+      assigns[:stories].should == [mock_story]
+    end
+  end
+
+  describe "GET published" do
+    it "exposes all published stories as @stories" do
+      Story.should_receive(:published).and_return([mock_story])
+      al_admin
+      get :published
+      assigns[:stories].should == [mock_story]
+    end
+  end
+  
+  describe "PUT approve" do
+    it "approves the requested story and returns to pending stories" do
+      Story.should_receive(:find).with("37").and_return(mock_story)
+      mock_story.should_receive(:approve)
+      mock_story.should_receive(:save)
+      put :approve, :id => "37"
+      response.should redirect_to(pending_stories_path)
+    end
+  end
+  
+  describe "PUT reject" do
+    it "rejects the requested story and returns to pending stories" do
+      Story.should_receive(:find).with("37").and_return(mock_story)
+      mock_story.should_receive(:reject)
+      mock_story.should_receive(:save)
+      put :reject, :id => "37"
+      response.should redirect_to(pending_stories_path)
+    end
+  end
+  
+  describe "PUT mark_as_spam" do
+    it "marks as spam the requested story and returns to pending stories" do
+      Story.should_receive(:find).with("37").and_return(mock_story)
+      mock_story.should_receive(:mark_as_spam)
+      mock_story.should_receive(:save)
+      put :mark_as_spam, :id => "37"
+      response.should redirect_to(pending_stories_path)
+    end
+  end
+  
+  describe "PUT mark_as_pending" do
+    it "marks as pending the requested story and returns to pending stories" do
+      Story.should_receive(:find).with("37").and_return(mock_story)
+      mock_story.should_receive(:mark_as_pending)
+      mock_story.should_receive(:save)
+      put :mark_as_pending, :id => "37"
+      response.should redirect_to(pending_stories_path)
+    end
+  end
+  
+  describe "PUT publish" do
+    it "publishes the requested story and returns to pending stories" do
+      Story.should_receive(:find).with("37").and_return(mock_story)
+      mock_story.should_receive(:publish)
+      mock_story.should_receive(:save)
+      put :publish, :id => "37"
+      response.should redirect_to(pending_stories_path)
+    end
+  end
 end

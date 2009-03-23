@@ -26,7 +26,7 @@ class Story < ActiveRecord::Base
     transitions :to => :rejected, :from => [:pending, :approved, :spam]
   end
 
-  aasm_event :flag_as_spam do
+  aasm_event :mark_as_spam do
     transitions :to => :spam, :from =>
       [:pending, :approved, :published, :rejected]
   end

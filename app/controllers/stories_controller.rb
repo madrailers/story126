@@ -89,17 +89,79 @@ class StoriesController < ApplicationController
   
   # GET /stories/pending
   def pending
-    @stories = Story.pending
+    if current_user && current_user.login == 'admin'
+      @stories = Story.pending
 
-    respond_to do |format|
-      format.html # index.html.erb
+      respond_to do |format|
+        format.html # index.html.erb
+      end
+    else
+      redirect_to '/'
     end
+  end
+  
+  # GET /stories/approved
+  def approved
+    if current_user && current_user.login == 'admin'
+      @stories = Story.approved
+
+      respond_to do |format|
+        format.html # index.html.erb
+      end
+    else
+      redirect_to '/'
+    end
+  end
+
+  # GET /stories/rejected
+  def rejected
+    if current_user && current_user.login == 'admin'
+      @stories = Story.rejected
+
+      respond_to do |format|
+        format.html # index.html.erb
+      end
+    else
+      redirect_to '/'
+    end
+  end
+
+  # GET /stories/spam
+  def spam
+    if current_user && current_user.login == 'admin'
+      @stories = Story.spam
+
+      respond_to do |format|
+        format.html # index.html.erb
+      end
+    else
+      redirect_to '/'
+    end
+  end
+
+  # GET /stories/published
+  def published
+    if current_user && current_user.login == 'admin'
+      @stories = Story.published
+
+      respond_to do |format|
+        format.html # index.html.erb
+      end
+    else
+      redirect_to '/'
+    end
+
   end
 
   # PUT /stories/1/approve
   def approve
     @story = Story.find(params[:id])
-    @story.state = :approved
+    @story.approve
+    if @story.save
+      flash[:notice] = "Story approved"
+    else
+      flash[:notice] = "Story was not approved!"
+    end
     respond_to do |format|
       format.html { redirect_to(pending_stories_url) }
     end
@@ -107,17 +169,57 @@ class StoriesController < ApplicationController
 
   # PUT /stories/1/reject
   def reject
+    @story = Story.find(params[:id])
+    @story.reject
+    if @story.save
+      flash[:notice] = "Story rejected"
+    else
+      flash[:notice] = "Story was not rejected!"
+    end
+    respond_to do |format|
+      format.html { redirect_to(pending_stories_url) }
+    end
   end
 
   # PUT /stories/1/mark_as_spam
   def mark_as_spam
+    @story = Story.find(params[:id])
+    @story.mark_as_spam
+    if @story.save
+      flash[:notice] = "Story marked as spam"
+    else
+      flash[:notice] = "Story was not marked as spam!"
+    end
+    respond_to do |format|
+      format.html { redirect_to(pending_stories_url) }
+    end
   end
 
   # PUT /stories/1/mark_as_pending
   def mark_as_pending
+    @story = Story.find(params[:id])
+    @story.mark_as_pending
+    if @story.save
+      flash[:notice] = "Story marked as pending"
+    else
+      flash[:notice] = "Story was not marked as pending!"
+    end
+    respond_to do |format|
+      format.html { redirect_to(pending_stories_url) }
+    end
   end
 
   # PUT /stories/1/publish
   def publish
+    @story = Story.find(params[:id])
+    @story.publish
+    if @story.save
+      flash[:notice] = "Story published"
+    else
+      flash[:notice] = "Story was not published!"
+    end
+    respond_to do |format|
+      format.html { redirect_to(pending_stories_url) }
+    end
   end
 end
