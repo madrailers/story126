@@ -15,8 +15,8 @@ module NavigationHelpers
     when /the rejected stories page/i
       rejected_stories_path
     
-    when /the accepted stories page/i
-      accepted_stories_path
+    when /the approved stories page/i
+      approved_stories_path
     
     else
       raise "Can't find mapping from \"#{page_name}\" to a path."

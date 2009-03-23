@@ -4,17 +4,17 @@ Feature: Administrative Access
   Should be sent to the home page when trying to access admin pages
 
   Scenario: Non-administrator cannot view all pending stories
-    Given I am not logged in as an administrator
+    Given I am not logged in
     When I am on the pending stories page
     Then I should not see "pending"
 
   Scenario: Non-administrator cannot view all rejected stories
-    Given I am not logged in as an administrator
+    Given I am not logged in
     When I am on the rejected stories page
     Then I should not see "rejected"
 
   Scenario: Non-administrator cannot view all spam stories
-    Given I am not logged in as an administrator
+    Given I am not logged in
     When I am on the spam stories page
     Then I should not see "spam"
 
