@@ -1,0 +1,21 @@
+%h1 Approved stories
+%table
+  %tr
+    %th
+      Text
+    %th
+      User
+  - for story in @stories
+    %tr[story]
+      %td
+        =h story.text
+      %td
+        =h story.user_id
+      %td
+        = link_to 'Publish', publish_story_path(story), :method => :put
+      %td
+        = link_to 'Reject', reject_story_path(story), :method => :put
+      %td
+        = link_to 'Spam', mark_as_spam_story_path(story), :method => :put
+%br
+= link_to 'New story', new_story_path
