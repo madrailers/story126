@@ -19,7 +19,8 @@ class Story < ActiveRecord::Base
   aasm_state :spam
 
   aasm_event :approve do
-    transitions :to => :approved, :from => [:pending, :rejected, :spam]
+    transitions :to => :approved, :from => [:pending, :rejected, :spam],
+      :success => Proc.new {|s| s.approved_at = Time.now}
   end
 
   aasm_event :reject do

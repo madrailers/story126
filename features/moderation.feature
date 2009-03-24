@@ -30,6 +30,7 @@ Feature: Story Moderation
     And I approve the story with id "1"
     Then the story with id "1" has state "approved"
     And I should see "Story approved"
+    And a story with id "1" has a recent "approved_at" field
 
   Scenario: Administrator can mark a story as rejected
     Given "administrator" user exists
@@ -40,6 +41,7 @@ Feature: Story Moderation
     And I reject the story with id "2"
     Then the story with id "2" has state "rejected"
     And I should see "Story rejected"
+    And a story with id "2" has a recent "rejected_at" field
 
   Scenario: Administrator can mark a story as spam
     Given "administrator" user exists
@@ -50,6 +52,7 @@ Feature: Story Moderation
     And I mark as spam the story with id "3"
     Then the story with id "3" has state "spam"
     And I should see "Story marked as spam"
+    And a story with id "3" has a recent "marked_as_spam_at" field
 
   Scenario: Administrator can publish a story
     Given "administrator" user exists
@@ -61,3 +64,4 @@ Feature: Story Moderation
     Then the story with id "4" has state "published"
     And I should see "Story published"
     And Twitter should have the story with id "4"
+    And a story with id "4" has a recent "published_at" field

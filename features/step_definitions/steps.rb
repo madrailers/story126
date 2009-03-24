@@ -58,3 +58,7 @@ end
 Then /^Twitter should have the story with id "4"$/ do
   pending
 end
+
+Then /^a story with id "(.*)" has a recent "(.*)" field$/ do |story_id, field|
+  (Story.find(story_id))[field].should be_close(Time.now, 2.seconds)
+end
