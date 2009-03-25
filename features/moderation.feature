@@ -27,6 +27,7 @@ Feature: Story Moderation
     And there are no stories
     And a story with id "1" has state "pending"
     When I am on the pending stories page
+    And I am pending
     And I approve the story with id "1"
     Then the story with id "1" has state "approved"
     And I should see "Story approved"
@@ -37,6 +38,7 @@ Feature: Story Moderation
     And there are no stories
     And a story with id "2" has state "pending"
     When I am on the pending stories page
+    And I am pending
     And I reject the story with id "2"
     Then the story with id "2" has state "rejected"
     And I should see "Story rejected"
@@ -47,6 +49,7 @@ Feature: Story Moderation
     And there are no stories
     And a story with id "3" has state "pending"
     When I am on the pending stories page
+    And I am pending
     And I mark as spam the story with id "3"
     Then the story with id "3" has state "spam"
     And I should see "Story marked as spam"
@@ -57,6 +60,7 @@ Feature: Story Moderation
     And there are no stories
     And a story with id "4" has state "approved"
     When I am on the approved stories page
+    And I am pending
     And I publish the story with id "4"
     Then the story with id "4" has state "published"
     And I should see "Story published"
