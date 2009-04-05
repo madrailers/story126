@@ -35,30 +35,48 @@ Given /^there are no stories$/ do
   Story.delete_all
 end
 
-Given /^a story with id "(.*)" has state "(.*)"$/ do |story_id, story_state|
-  Story.create!(:text => random_string, :id => story_id, :state => story_state)
+Given /^the "(.*)" story exists$/ do |story_name|
+  visit '/'
+  fill_in('text', :with => auto_story(story_name))
+  click_button('Create')
 end
 
-When /^I (\S*) the story with id "(.*)"$/ do |action, story_id|
-  within("tr#story_#{story_id}") {
-    click_link(action)
+# Given /^the "(.*)" story has state "(.*)"$/ do |story_id, story_state|
+  # Story.create!(:text => random_string, :id => story_id, :state => story_state)
+# end
+
+When /^I (\S*) the "(.*)" story$/ do |action, story_name|
+  within("tr#story_#{story_name}") {
+    click_button(action)
   }
 end
 
-When /^I mark as spam the story with id "(.*)"$/ do |story_id|
-  within("tr#story_#{story_id}") {
-    click_link("spam")
+When /^I mark as spam the "(.*)" story $/ do |story_name|
+  within("tr#story_#{story_name}") {
+    click_button("spam")
   }
 end
 
-Then /^the story with id "(.*)" has state "(.*)"$/ do |story_id, story_state|
-  Story.find(story_id).should eval("be_#{story_state}")
+When /^the "(.*)" story has state "(.*)"$/ do |story_name, story_state|
+  # Story.find(story_id).should eval("be_#{story_state}")
+  visit "/stories"
+  # click_link(auto_story(story_name))
+  click_link(field_by_xpath("td"))
+  response.should have_text(story_state)
 end
 
-Then /^Twitter should have the story with id "4"$/ do
+Then /^the "(.*)" story should have state "(.*)"$/ do |story_name, story_state|
+  # Story.find(story_id).should eval("be_#{story_state}")
+  visit "/stories"
+  click_link(auto_story(story_name))
+  response.should have_text(story_state)
+end
+
+Then /^Twitter should have the "(.*)" story$/ do |story_name|
   pending
 end
 
-Then /^a story with id "(.*)" has a recent "(.*)" field$/ do |story_id, field|
-  (Story.find(story_id))[field].should be_close(Time.now, 2.seconds)
+Then /^the "(.*)" story has a recent "(.*)" field$/ do |story_id, field|
+  # (Story.find(story_id))[field].should be_close(Time.now, 2.seconds)
+  pending
 end
