@@ -1,9 +1,15 @@
 %p
-  %b Text:
+  %b= "Text ( #{@story.state} ):"
   =h @story.text
 %p
   %b User:
   =h @story.user_id
+%p
+  = button_to "approve", approve_story_path(@story), :method => :put
+  = button_to "reject", reject_story_path(@story), :method => :put
+  = button_to "publish", approve_story_path(@story), :method => :put
+  = button_to "mark as spam", approve_story_path(@story), :method => :put
+
 = link_to 'Edit', edit_story_path(@story)
 |
 = link_to 'Back', stories_path

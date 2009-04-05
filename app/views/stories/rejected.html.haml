@@ -12,10 +12,10 @@
       %td
         =h story.user_id
       %td
-        = link_to 'Approve', approve_story_path(story)
+        = button_to 'Approve', approve_story_path(story)
       %td
-        = link_to 'Reject', reject_story_path(story)
+        = button_to 'Reject', reject_story_path(story)
       %td
-        = link_to 'Spam', mark_as_spam_story_path(story)
+        = button_to 'Spam', mark_as_spam_story_path(story)
 %br
 = link_to 'New story', new_story_path

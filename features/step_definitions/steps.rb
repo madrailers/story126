@@ -37,7 +37,7 @@ end
 
 Given /^the "(.*)" story exists$/ do |story_name|
   visit '/'
-  fill_in('text', :with => auto_story(story_name))
+  fill_in('Start your story here', :with => auto_story(story_name))
   click_button('Create')
 end
 
@@ -46,30 +46,33 @@ end
 # end
 
 When /^I (\S*) the "(.*)" story$/ do |action, story_name|
-  within("tr#story_#{story_name}") {
-    click_button(action)
-  }
+  click_button(action)
 end
 
-When /^I mark as spam the "(.*)" story $/ do |story_name|
-  within("tr#story_#{story_name}") {
+When /^I mark as spam the "(.*)" story$/ do |story_name|
     click_button("spam")
-  }
 end
 
 When /^the "(.*)" story has state "(.*)"$/ do |story_name, story_state|
-  # Story.find(story_id).should eval("be_#{story_state}")
   visit "/stories"
-  # click_link(auto_story(story_name))
-  click_link(field_by_xpath("td"))
-  response.should have_text(story_state)
+  click_link('Show')
+  case story_state
+  when "approved"
+    click_button("Approve")
+  when "pending"
+    click_button("Mark As Pending")
+  when "rejected"
+    click_button("Reject")
+  when "published"
+    click_button("Published")
+  end
 end
 
 Then /^the "(.*)" story should have state "(.*)"$/ do |story_name, story_state|
   # Story.find(story_id).should eval("be_#{story_state}")
   visit "/stories"
-  click_link(auto_story(story_name))
-  response.should have_text(story_state)
+  click_link('Show')
+  response.body.should include(story_state)
 end
 
 Then /^Twitter should have the "(.*)" story$/ do |story_name|
