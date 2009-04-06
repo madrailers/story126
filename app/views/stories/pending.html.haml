@@ -6,16 +6,16 @@
     %th
       User
   - for story in @stories
-    %tr[story]
+    %tr
       %td
         =h story.text
       %td
         =h story.user_id
       %td
-        = button_to 'Approve', approve_story_path(story), :method => :put
+        = button_put 'Approve', approve_story_path(story)
       %td
-        = button_to 'Reject', reject_story_path(story), :method => :put
+        = button_put 'Reject', reject_story_path(story)
       %td
-        = button_to 'Spam', mark_as_spam_story_path(story), :method => :put
+        = button_put 'Spam', mark_as_spam_story_path(story)
 %br
 = link_to 'New story', new_story_path
