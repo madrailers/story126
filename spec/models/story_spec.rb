@@ -58,15 +58,17 @@ describe Story do
   end
 end
 
-
 # == Schema Info
-# Schema version: 20090321191310
 #
 # Table name: stories
 #
-#  id         :integer(4)      not null, primary key
-#  user_id    :integer(4)
-#  state      :string(255)
-#  text       :string(255)
-#  created_at :datetime
-#  updated_at :datetime
+#  id                :integer(4)      not null, primary key
+#  user_id           :integer(4)
+#  state             :string(255)
+#  text              :string(255)
+#  approved_at       :time
+#  created_at        :datetime
+#  marked_as_spam_at :time
+#  published_at      :time
+#  rejected_at       :time
+#  updated_at        :datetime

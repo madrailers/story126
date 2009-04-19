@@ -2,9 +2,7 @@ class User < ActiveRecord::Base
   acts_as_authentic
 end
 
-
 # == Schema Info
-# Schema version: 20090321191310
 #
 # Table name: users
 #
