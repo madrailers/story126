@@ -18,9 +18,7 @@ two:
   perishable_token: MyString
   login_count: 4
 
-
 # == Schema Info
-# Schema version: 20090321191310
 #
 # Table name: users
 #
