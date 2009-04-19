@@ -5,12 +5,20 @@
       Text
     %th
       User
+    %th
+      Timestamps
   - for story in @stories
     %tr
       %td
         =h story.text
       %td
         =h story.user_id
+      %td
+        #submitted_at= h story.created_at
+        #approved_at= h story.approved_at
+        #rejected_at= h story.rejected_at
+        #published_at= h story.published_at
+        #marked_as_spam_at= h story.marked_as_spam_at
       %td
         = link_to 'Show', story
       %td

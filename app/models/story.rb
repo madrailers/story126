@@ -24,18 +24,21 @@ class Story < ActiveRecord::Base
   end
 
   aasm_event :reject do
-    transitions :to => :rejected, :from => [:pending, :approved, :spam]
+    transitions :to => :rejected, :from => [:pending, :approved, :spam],
+      :success => Proc.new {|s| s.rejected_at = Time.now}
   end
 
   aasm_event :mark_as_spam do
     transitions :to => :spam, :from =>
-      [:pending, :approved, :published, :rejected]
+      [:pending, :approved, :published, :rejected],
+      :success => Proc.new {|s| s.marked_as_spam_at = Time.now}
   end
 
   aasm_event :publish do
     # tweet!
     # store link to tweet!
-    transitions :to => :published, :from => [:approved]
+    transitions :to => :published, :from => [:approved],
+      :success => Proc.new {|s| s.published_at = Time.now}
   end
 
   aasm_event :reset do
