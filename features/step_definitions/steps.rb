@@ -82,7 +82,7 @@ end
 Then /^the "(.*)" story has a recent "(.*)" field$/ do |story_name, field|
   # (Story.find(story_id))[field].should be_close(Time.now, 2.seconds)
   visit "/stories"
-  within("tr ##{field}") do |scope|
+  within("tr .#{field}") do |scope|
     Time.parse(scope.to_s).should be_close(Time.now(), 1000)
   end
   # pending

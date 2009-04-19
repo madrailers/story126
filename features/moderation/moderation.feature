@@ -21,7 +21,7 @@ Feature: Story Moderation
     When I am on the spam stories page
     Then I should see all spam stories or "No spam stories"
 
-  Scenario: Administrator can mark a story as accepted
+  Scenario: Administrator can mark a story as approved
     Given "administrator" user exists
     And I am logged in as "administrator"
     And there are no stories
@@ -29,6 +29,7 @@ Feature: Story Moderation
     When I am on the pending stories page
     And I approve the "silly" story
     Then I should see "Story approved"
+    And I am on the approved stories pages
     And the "silly" story should have state "approved"
     And the "silly" story has a recent "approved_at" field
 
