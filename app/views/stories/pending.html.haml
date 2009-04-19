@@ -11,6 +11,7 @@
         =h story.text
       %td
         =h story.user_id
+      = render :partial => 'timestamps', :locals => {:story => story}
       %td
         = button_put 'Approve', approve_story_path(story)
       %td
