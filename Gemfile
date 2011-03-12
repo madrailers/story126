@@ -37,6 +37,7 @@ end
 
 group :test, :development do
   gem 'factory_girl_generator'
+  gem 'gists'
   gem 'rspec-rails'
   gem 'ruby-debug19', :platforms => :ruby_19
   gem 'ruby-debug', :platforms => :ruby_18

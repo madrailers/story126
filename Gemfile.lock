@@ -80,6 +80,7 @@ GEM
       rake (>= 0.8.7)
     gherkin (2.3.4)
       json (~> 1.4.6)
+    gists (0.0.1)
     git (1.2.5)
     haml (3.0.25)
     haml-rails (0.3.4)
@@ -215,6 +216,7 @@ DEPENDENCIES
   devise!
   factory_girl_generator
   factory_girl_rails
+  gists
   git
   haml-rails
   heroku
