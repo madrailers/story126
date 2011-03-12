@@ -9,6 +9,7 @@ gem 'devise', :git => 'git://github.com/plataformatec/devise.git'
 gem 'haml-rails'
 gem 'html5-boilerplate'
 gem 'rack-ssl', :require => 'rack/ssl'
+gem 'state_machine'
 
 gem 'awesome_print'
 gem 'looksee'
@@ -37,6 +38,7 @@ end
 
 group :test, :development do
   gem 'factory_girl_generator'
+  gem 'gists'
   gem 'rspec-rails'
   gem 'ruby-debug19', :platforms => :ruby_19
   gem 'ruby-debug', :platforms => :ruby_18
