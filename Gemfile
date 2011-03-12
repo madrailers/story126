@@ -2,10 +2,7 @@
 source :rubygems
 
 gem 'rails', '3.0.5'
-
-
-gem 'mysql'
-#gem 'pg'
+gem 'pg'
 
 gem 'compass'
 gem 'devise', :git => 'git://github.com/plataformatec/devise.git'
@@ -22,13 +19,11 @@ group :development do
   gem 'hpricot'
   gem 'ruby_parser'
 
-  # for typical deployment
-  # gem 'capistrano'
-
   # for heroku deployment
-  # gem 'heroku', :require => false
-  # gem 'git'
-  # gem 'taps'
+  gem 'heroku', :require => false
+  gem 'heroku_san'
+  gem 'git'
+  gem 'taps'
 end
 
 group :test do
@@ -43,8 +38,6 @@ end
 group :test, :development do
   gem 'factory_girl_generator'
   gem 'rspec-rails'
-end
-
-group :test, :development, :staging do
-  gem 'ruby-debug19'
+  gem 'ruby-debug19', :platforms => :ruby_19
+  gem 'ruby-debug', :platforms => :ruby_18
 end
