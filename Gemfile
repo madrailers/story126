@@ -9,6 +9,7 @@ gem 'devise', :git => 'git://github.com/plataformatec/devise.git'
 gem 'haml-rails'
 gem 'html5-boilerplate'
 gem 'rack-ssl', :require => 'rack/ssl'
+gem 'state_machine'
 
 gem 'awesome_print'
 gem 'looksee'
