@@ -3,7 +3,7 @@
 .bundle
 capybara-*.html
 config/database.yml
-config/credentials.rb
+config/credentials.yml
 db/*.db
 db/*.sql
 log/*.log

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110312161349) do
+ActiveRecord::Schema.define(:version => 20110312174051) do
 
   create_table "stories", :force => true do |t|
     t.string   "body"
@@ -20,5 +20,19 @@ ActiveRecord::Schema.define(:version => 20110312161349) do
   end
 
   add_index "stories", ["state"], :name => "index_stories_on_state"
+
+  create_table "users", :force => true do |t|
+    t.datetime "remember_created_at"
+    t.integer  "sign_in_count",       :default => 0
+    t.datetime "current_sign_in_at"
+    t.datetime "last_sign_in_at"
+    t.string   "current_sign_in_ip"
+    t.string   "last_sign_in_ip"
+    t.string   "twitter_user_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "users", ["twitter_user_id"], :name => "index_users_on_twitter_user_id", :unique => true
 
 end

@@ -8,6 +8,7 @@ gem 'compass'
 gem 'devise', :git => 'git://github.com/plataformatec/devise.git'
 gem 'haml-rails'
 gem 'html5-boilerplate'
+gem "oa-oauth", :require => "omniauth/oauth"
 gem 'rack-ssl', :require => 'rack/ssl'
 gem 'state_machine'
 
@@ -40,6 +41,6 @@ group :test, :development do
   gem 'factory_girl_generator'
   gem 'gists'
   gem 'rspec-rails'
-  gem 'ruby-debug19', :platforms => :ruby_19
+  gem 'ruby-debug19', :require => 'ruby-debug', :platforms => :ruby_19
   gem 'ruby-debug', :platforms => :ruby_18
 end

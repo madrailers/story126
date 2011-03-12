@@ -4,11 +4,10 @@ class StoriesController < ApplicationController
     @story = Story.new(params[:story])
     if @story.save
       flash[:success] = 'Story Submitted!'
-      redirect_to root_path
     else
-      flash.now[:failure] = 'Story could not be saved'
-      render :template => 'welcome/index'
+      flash[:failure] = 'Story could not be saved'
     end
+    redirect_to root_path
   end
 
 end
